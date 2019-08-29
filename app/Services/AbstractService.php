@@ -17,7 +17,7 @@ abstract class AbstractService
         return $this;
     }
 
-    public function setValidate(ValidatorInterface $validator)
+    public function setValidator(ValidatorInterface $validator)
     {
         $this->validator = $validator;
 
@@ -26,9 +26,19 @@ abstract class AbstractService
 
     public function getList()
     {
-        $data = $this->repository->all();
+        $instances = $this->repository->all();
 
-        return $data;
+        return $instances;
+    }
+
+    protected function beforeCreate(array $attributes)
+    {
+        return $attributes;
+    }
+
+    protected function beforeUpdate(array $attributes)
+    {
+        return $attributes;
     }
 
     public function with(array $relationship)
@@ -36,5 +46,14 @@ abstract class AbstractService
         $this->repository->with($relationship);
 
         return $this;
+    }
+
+    public function create(array $attributes)
+    {
+        $attributes = $this->beforeCreate($attributes);
+        $instance = $this->repository->create($attributes);
+        dd($instance);
+
+        return $instance;
     }
 }

@@ -6,8 +6,6 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\Contracts\UserRepository;
 use App\Models\User;
-use App\Repositories\Validators\UserValidator;
-
 /**
  * Class UserRepositoryEloquent.
  *
