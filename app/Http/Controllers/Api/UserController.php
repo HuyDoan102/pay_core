@@ -22,12 +22,12 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userService->getList();
-        $array_users = [];
-        foreach ($users as $user) {
-            $array_users = array_merge($array_users, UserResource::make($user));
-        }
 
-        return $this->responseSuccess(['info' => $array_users], __('pay.user.list'));
+        $users = $users->map(function ($user) {
+            return UserResource::make($user);
+        });
+
+        return $this->responseSuccess(['info' => $users], __('pay.user.list'));
     }
 
     public function store(Request $request)
