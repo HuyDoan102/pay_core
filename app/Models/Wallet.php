@@ -7,11 +7,11 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class User.
+ * Class Wallet.
  *
  * @package namespace App\Models;
  */
-class User extends Model implements Transformable
+class Wallet extends Model implements Transformable
 {
     use TransformableTrait;
 
@@ -20,11 +20,10 @@ class User extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['phone_number', 'passcode'];
+    protected $fillable = ['user_id', 'wallet_hash', 'balance'];
 
-    public function wallet()
+    public function user()
     {
-        return $this->hasOne(Wallet::class, 'user_id', 'id');
+        return $this->belongsTo(Wallet::class, 'user_id');
     }
-
 }

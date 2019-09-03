@@ -50,9 +50,9 @@ abstract class AbstractService
 
     public function create(array $attributes)
     {
+//        $this->validator->with($attributes)->passesOrFail($this->validator::RULE_CREATE);
         $attributes = $this->beforeCreate($attributes);
         $instance = $this->repository->create($attributes);
-        dd($instance);
 
         return $instance;
     }
