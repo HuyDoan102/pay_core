@@ -12,4 +12,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     use ApiResponse;
+
+    public function guard()
+    {
+        return auth('api');
+    }
 }
