@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
-use Illuminate\Routing\Matching\ValidatorInterface;
+use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 abstract class AbstractService
 {
     protected $repository;
     protected $validator;
+    protected $actionValidator = '';
 
     public function setRepository(RepositoryInterface $repository)
     {
@@ -22,6 +23,11 @@ abstract class AbstractService
         $this->validator = $validator;
 
         return $this;
+    }
+
+    public function setActionValidate($action = null)
+    {
+        $this->actionValidator = $action;
     }
 
     public function getList()

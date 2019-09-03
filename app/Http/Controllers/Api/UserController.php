@@ -61,8 +61,10 @@ class UserController extends Controller
             return $this->responseSuccess(['info' => $user], __('pay.user.create'));
         } catch (ValidatorException $e) {
             DB::rollBack();
-            dd($e->getMessageBag());
             return $this->responseError($e->getMessageBag());
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->responseError(__('pay.user.error'));
         }
     }
 }
