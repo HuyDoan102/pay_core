@@ -15,7 +15,7 @@ class UserService extends AbstractService
 
     public function beforeCreate(array $attributes)
     {
-        $attributes['passcode'] = bcrypt($attributes['passcode']);
+        $attributes['password'] = bcrypt($attributes['password']);
 
         return $attributes;
     }

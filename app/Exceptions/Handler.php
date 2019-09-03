@@ -2,11 +2,14 @@
 
 namespace App\Exceptions;
 
+use App\Concerns\ApiResponse;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponse;
     /**
      * A list of the exception types that are not reported.
      *
@@ -46,6 +49,23 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof UnauthorizedHttpException) {
+            $preException = $exception->getPrevious();
+            if ($preException instanceof
+                \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+                return $this->responseError(__('errors.token_expired'), 401);
+            } else if ($preException instanceof
+                \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
+                return $this->responseError(__('errors.token_invalid'), 401);
+            } else if ($preException instanceof
+                \Tymon\JWTAuth\Exceptions\TokenBlacklistedException) {
+                return $this->responseError(__('errors.token_blacklisted'), 401);
+            }
+            if ($exception->getMessage() === 'Token not provided') {
+                return $this->responseError(__('errors.token_not_provided'), 401);
+            }
+        }
+
         return parent::render($request, $exception);
     }
 }

@@ -9,7 +9,8 @@ trait ApiResponse
         $data = [
             'message' => $message,
             'status' => true,
-            'data' => $payload
+            'data' => $payload,
+            'expires_in' => auth('api')->factory()->getTTL() * 60
         ];
 
         return response()->json($data, $statusCode);
@@ -23,5 +24,15 @@ trait ApiResponse
         ];
 
         return response()->json($data, $statusCode);
+    }
+
+    public function responseWithToken($token, $info = [])
+    {
+        $payload = array_merge([
+            'token_type' => 'Bearer',
+            'access_token' => $token,
+        ], $info);
+
+        return $this->responseSuccess($payload, __('auth.success'));
     }
 }
