@@ -30,6 +30,11 @@ class UserController extends Controller
 
     public function index()
     {
+        $fileJson = public_path('js/Paycore_API-swagger.json');
+        $file = fopen($fileJson, "r");
+//        echo fread($file,filesize($fileJson));
+        dd(fread($file,filesize($fileJson)));
+        fclose($file);
         $users = $this->userService->getList();
 
         $users = $users->map(function ($user) {
