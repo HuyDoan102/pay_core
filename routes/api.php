@@ -26,4 +26,8 @@ Route::group(['middleware' => 'api', 'namespace' => 'Api'], function() {
             Route::post('/store', 'UserController@store')->name('store');
         });
     });
+    Route::group(['prefix' => 'documents', 'as' => 'documents.'], function() {
+        Route::get('/', 'DocumentController@index')->name('index');
+        Route::get('/file-json', 'DocumentController@getFile')->name('getFile');
+    });
 });
