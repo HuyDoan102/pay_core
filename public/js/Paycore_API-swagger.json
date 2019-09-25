@@ -5,7 +5,7 @@
     "title" : "API Paycore Project",
     "description" : "This is api for project Paycore"
   },
-  "host" : "34.67.255.109",
+  "host" : "http://paycore.local:8000",
   "basePath" : "/api",
   "schemes" : [ "http" ],
   "securityDefinitions" : {
