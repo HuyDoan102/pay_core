@@ -30,6 +30,11 @@ class User extends Authenticatable implements Transformable, JWTSubject
         return $this->hasOne(Wallet::class, 'user_id', 'id');
     }
 
+    public function statements()
+    {
+        return $this->hasMany(Statement::class, 'user_id', 'id');
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

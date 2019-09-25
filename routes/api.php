@@ -12,11 +12,11 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['middleware' => 'api', 'namespace' => 'Api'], function() {
+Route::group(['middleware' => 'api', 'namespace' => 'Api'], function () {
     Route::post('login', 'AuthController@login')->name('login');
     Route::post('register', 'AuthController@register')->name('register');
     Route::group(['middleware' => 'jwt.auth'], function() {
-        Route::group(['prefix' => 'auth', 'as' => 'auth.'], function() {
+        Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
             Route::post('logout', 'AuthController@logout')->name('logout');
             Route::post('refresh', 'AuthController@refresh')->name('refresh');
             Route::get('me', 'AuthController@me')->name('me');
@@ -25,8 +25,11 @@ Route::group(['middleware' => 'api', 'namespace' => 'Api'], function() {
             Route::get('/', 'UserController@index')->name('index');
             Route::post('/store', 'UserController@store')->name('store');
         });
+        Route::group(['prefix' => 'statements', 'as' => 'statements.'], function () {
+           Route::post('/create', 'StatementController@create')->name('create');
+        });
     });
-    Route::group(['prefix' => 'documents', 'as' => 'documents.'], function() {
+    Route::group(['prefix' => 'documents', 'as' => 'documents.'], function () {
         Route::get('/', 'DocumentController@index')->name('index');
         Route::get('/file-json', 'DocumentController@getFile')->name('getFile');
     });
