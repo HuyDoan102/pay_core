@@ -28,6 +28,6 @@ Route::group(['middleware' => 'api', 'namespace' => 'Api'], function() {
     });
     Route::group(['prefix' => 'documents', 'as' => 'documents.'], function() {
         Route::get('/', 'DocumentController@index')->name('index');
-        Route::get('/file-json', 'DocumentController@getFile')->name('getFile');
+        Route::get('/get-file', 'DocumentController@getFile')->name('getFile');
     });
 });

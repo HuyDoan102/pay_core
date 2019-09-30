@@ -1,0 +1,15 @@
+# /paths/auth.yaml
+me:
+  get:
+    security:
+    - bearerAuth: []
+    tags:
+    - Auth
+    summary: Get information of users.
+    responses:
+      '200':
+        description: Get information of users success.
+      '400':
+        $ref: '#components/responses/400Error'
+      '401':
+        $ref: '#/components/responses/UnauthorizedError'

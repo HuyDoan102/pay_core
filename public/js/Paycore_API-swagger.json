@@ -20,13 +20,13 @@
     "/login" : {
       "post" : {
         "tags" : [ "Auth" ],
-        "summary" : "Đăng nhập tài khoản người dùng",
+        "summary" : "Đăng nhập tài khoản người dùng.",
         "consumes" : [ "application/json", "application/xml" ],
         "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "in" : "body",
           "name" : "body",
-          "description" : "Nhập email và mật khẩu đăng nhập",
+          "description" : "Nhập email và mật khẩu đăng nhập.",
           "required" : true,
           "schema" : {
             "$ref" : "#/definitions/Login"
@@ -37,10 +37,10 @@
             "description" : "Truy cập thành công."
           },
           "401" : {
-            "description" : "Token không hợp lệ"
+            "description" : "Token không hợp lệ."
           },
           "400" : {
-            "description" : "Server bị lỗi"
+            "description" : "Server bị lỗi."
           }
         }
       }
@@ -48,13 +48,13 @@
     "/register" : {
       "post" : {
         "tags" : [ "Auth" ],
-        "summary" : "Đăng ký tài khoản người dùng",
+        "summary" : "Đăng ký tài khoản người dùng.",
         "consumes" : [ "application/json", "application/xml" ],
         "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "in" : "body",
           "name" : "body",
-          "description" : "Đăng ký tài khoản người dùng",
+          "description" : "Đăng ký tài khoản người dùng.",
           "required" : true,
           "schema" : {
             "$ref" : "#/definitions/Register"
@@ -65,10 +65,10 @@
             "description" : "Truy cập thành công."
           },
           "401" : {
-            "description" : "Token không hợp lệ"
+            "description" : "Token không hợp lệ."
           },
           "400" : {
-            "description" : "Server bị lỗi"
+            "description" : "Server bị lỗi."
           }
         }
       }
@@ -76,7 +76,7 @@
     "/users" : {
       "get" : {
         "tags" : [ "User" ],
-        "summary" : "Get list users",
+        "summary" : "Lấy danh sách người dùng.",
         "consumes" : [ "application/json", "application/xml" ],
         "produces" : [ "application/json", "application/xml" ],
         "security" : [ {
@@ -87,10 +87,10 @@
             "description" : "Truy cập thành công."
           },
           "401" : {
-            "description" : "Token không hợp lệ"
+            "description" : "Token không hợp lệ."
           },
           "400" : {
-            "description" : "Server bị lỗi"
+            "description" : "Server bị lỗi."
           }
         }
       }
@@ -98,7 +98,7 @@
     "/users/store" : {
       "post" : {
         "tags" : [ "User" ],
-        "summary" : "Get list users",
+        "summary" : "Tạo người dùng.",
         "consumes" : [ "application/json", "application/xml" ],
         "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
@@ -118,10 +118,10 @@
             "description" : "Truy cập thành công."
           },
           "401" : {
-            "description" : "Token không hợp lệ"
+            "description" : "Token không hợp lệ."
           },
           "400" : {
-            "description" : "Server bị lỗi"
+            "description" : "Server bị lỗi."
           }
         }
       }
