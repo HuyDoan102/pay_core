@@ -13,9 +13,9 @@
       '200':
         description: Access user success.
       '400':
-        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/400Error'
+        $ref: '/js/api_docs/components/responses.yaml#/400Error'
       '401':
-        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/UnauthorizedError'
+        $ref: '/js/api_docs/components/responses.yaml#/UnauthorizedError'
 /register:
   post:
     tags:
@@ -30,9 +30,9 @@
       '200':
         description: Access user success.
       '400':
-        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/400Error'
+        $ref: '/js/api_docs/components/responses.yaml#/400Error'
       '401':
-        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/UnauthorizedError'
+        $ref: '/js/api_docs/components/responses.yaml#/UnauthorizedError'
 /me:
   get:
     deprecated: true
@@ -45,9 +45,9 @@
       '200':
         description: Get information of users success.
       '400':
-        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/400Error'
+        $ref: '/js/api_docs/components/responses.yaml#/400Error'
       '401':
-        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/UnauthorizedError'
+        $ref: '/js/api_docs/components/responses.yaml#/UnauthorizedError'
 /auth/me:
   get:
     security:
@@ -59,6 +59,6 @@
       '200':
         description: Get information of users success.
       '400':
-        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/400Error'
+        $ref: '/js/api_docs/components/responses.yaml#/400Error'
       '401':
-        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/UnauthorizedError'
+        $ref: '/js/api_docs/components/responses.yaml#/UnauthorizedError'

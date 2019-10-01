@@ -34,74 +34,14 @@ paths:
   /auth/me:
     $ref: '/js/api_docs/paths/auth.yaml#/~1auth~1me'
   /users:
-    get:
-      security:
-        - bearerAuth: []
-      tags:
-        - User
-      summary: Get list users.
-      responses:
-        '200':
-          description: Get list users success.
-        '400':
-          $ref: '#/components/responses/400Error'
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
+    $ref: '/js/api_docs/paths/users.yaml#/~1users'
   /users/show/{id}:
-    get:
-      security:
-        - bearerAuth: []
-      parameters:
-        - $ref: '#/components/parameters/UserById'
-      tags:
-        - User
-      summary: Get information of user by Id.
-      responses:
-        '200':
-          description: Get information of user by Id success.
-        '400':
-          $ref: '#/components/responses/400Error'
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
+    $ref: '/js/api_docs/paths/users.yaml#/~1users~1show~1{id}'
 
 components:
   securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+    - $ref: '/js/api_docs/components/securitySchemes.yaml#/bearerAuth'
 
   schemas:
     User:
-      type: object
-      properties:
-        phone_number:
-          type: string
-        password:
-          type: string
-      required:
-        - phone_number
-        - password
-
-  parameters:
-    UserById:
-      in: path
-      name: id
-      schema:
-        type: integer
-        required: true
-      description: Input ID of user.
-
-  responses:
-    400Error:
-      description: Invalid request.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Requestion not found.
-    UnauthorizedError:
-      description: Access token is missing or invalid
+      $ref: '/js/api_docs/components/schemas.yaml#/User'
