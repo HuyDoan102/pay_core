@@ -37,6 +37,13 @@ abstract class AbstractService
         return $instances;
     }
 
+    public function find($id)
+    {
+        $instance = $this->repository->find($id);
+
+        return $instance;
+    }
+
     protected function beforeCreate(array $attributes)
     {
         return $attributes;

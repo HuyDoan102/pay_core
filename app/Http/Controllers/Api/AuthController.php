@@ -9,6 +9,7 @@ use App\Repositories\Validators\UserValidator;
 use App\Services\UserService;
 use App\Services\WalletService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -82,5 +83,13 @@ class AuthController extends Controller
             DB::rollBack();
             return $this->responseError(__('errors.server_error'), 400);
         }
+    }
+
+    public function me()
+    {
+        $user = Auth::user();
+        $user = UserResource::make($user);
+
+        return $this->responseSuccess($user, 'Get information user');
     }
 }

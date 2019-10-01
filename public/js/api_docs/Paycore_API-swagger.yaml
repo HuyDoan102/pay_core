@@ -38,7 +38,7 @@ paths:
         '200':
           description: Access user success.
         '400':
-          $ref: '#components/responses/400Error'
+          $ref: '#/components/responses/400Error'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
   /register:
@@ -55,11 +55,23 @@ paths:
         '200':
           description: Access user success.
         '400':
-          $ref: '#components/responses/400Error'
+          $ref: '#/components/responses/400Error'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
-  /auth:
-    $ref: "paths/auth.yaml#/me"
+  /auth/me:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Auth
+      summary: Get information of users.
+      responses:
+        '200':
+          description: Get information of users success.
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
   /users:
     get:
       security:
@@ -71,7 +83,23 @@ paths:
         '200':
           description: Get list users success.
         '400':
-          $ref: '#components/responses/400Error'
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /users/show/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UserById'
+      tags:
+        - User
+      summary: Get information of user by Id.
+      responses:
+        '200':
+          description: Get information of user by Id success.
+        '400':
+          $ref: '#/components/responses/400Error'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -81,6 +109,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+
   schemas:
     User:
       type: object
@@ -92,6 +121,16 @@ components:
       required:
         - phone_number
         - password
+
+  parameters:
+    UserById:
+      in: path
+      name: id
+      schema:
+        type: integer
+        required: true
+      description: Input ID of user.
+
   responses:
     400Error:
       description: Invalid request.

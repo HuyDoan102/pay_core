@@ -4,7 +4,7 @@ namespace App\Concerns;
 
 trait ApiResponse
 {
-    public function responseSuccess(array $payload, $message = '', $statusCode = 200)
+    public function responseSuccess($payload = [], $message = '', $statusCode = 200)
     {
         $data = [
             'message' => $message,

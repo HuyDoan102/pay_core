@@ -23,6 +23,7 @@ Route::group(['middleware' => 'api', 'namespace' => 'Api'], function() {
         });
         Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
             Route::get('/', 'UserController@index')->name('index');
+            Route::get('/show/{id}', 'UserController@getById')->name('getById');
             Route::post('/store', 'UserController@store')->name('store');
         });
     });
