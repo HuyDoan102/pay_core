@@ -25,68 +25,14 @@ servers:
 
 paths:
   /login:
-    post:
-      tags:
-        - Auth
-      summary: Login with account user.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        '200':
-          description: Access user success.
-        '400':
-          $ref: '#/components/responses/400Error'
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
+    $ref: '/js/api_docs/paths/auth.yaml#/~1login'
   /register:
-    post:
-      tags:
-        - Auth
-      summary: Register account user.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        '200':
-          description: Access user success.
-        '400':
-          $ref: '#/components/responses/400Error'
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
+    $ref: '/js/api_docs/paths/auth.yaml#/~1register'
   /me:
-    get:
-      deprecated: true
-      security:
-        - bearerAuth: []
-      tags:
-        - Auth
-      summary: Get information of users.
-      responses:
-        '200':
-          description: Get information of users success.
-        '400':
-          $ref: '#/components/responses/400Error'
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
+    deprecated: true
+    $ref: '/js/api_docs/paths/auth.yaml#/~1me'
   /auth/me:
-    get:
-      security:
-      - bearerAuth: []
-      tags:
-      - Auth
-      summary: Get information of users.
-      responses:
-        '200':
-          description: Get information of users success.
-        '400':
-          $ref: '#/components/responses/400Error'
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
+    $ref: '/js/api_docs/paths/auth.yaml#/~1auth~1me'
   /users:
     get:
       security:

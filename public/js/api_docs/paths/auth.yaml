@@ -1,5 +1,54 @@
 # /paths/auth.yaml
-me:
+/login:
+  post:
+    tags:
+    - Auth
+    summary: Login with account user.
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/schemas/User'
+    responses:
+      '200':
+        description: Access user success.
+      '400':
+        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/400Error'
+      '401':
+        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/UnauthorizedError'
+/register:
+  post:
+    tags:
+    - Auth
+    summary: Register account user.
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/schemas/User'
+    responses:
+      '200':
+        description: Access user success.
+      '400':
+        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/400Error'
+      '401':
+        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/UnauthorizedError'
+/me:
+  get:
+    deprecated: true
+    security:
+    - bearerAuth: []
+    tags:
+    - Auth
+    summary: Get information of users.
+    responses:
+      '200':
+        description: Get information of users success.
+      '400':
+        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/400Error'
+      '401':
+        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/UnauthorizedError'
+/auth/me:
   get:
     security:
     - bearerAuth: []
@@ -10,6 +59,6 @@ me:
       '200':
         description: Get information of users success.
       '400':
-        $ref: '#components/responses/400Error'
+        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/400Error'
       '401':
-        $ref: '#/components/responses/UnauthorizedError'
+        $ref: '/js/api_docs/Paycore_API-swagger.yaml#/components/responses/UnauthorizedError'
