@@ -1,0 +1,30 @@
+/users:
+  get:
+    security:
+    - bearerAuth: []
+    tags:
+    - User
+    summary: Get list users.
+    responses:
+      '200':
+        description: Get list users success.
+      '400':
+        $ref: '/js/api_docs/components/responses.yaml#/400Error'
+      '401':
+        $ref: '/js/api_docs/components/responses.yaml#/UnauthorizedError'
+/users/show/{id}:
+  get:
+    security:
+    - bearerAuth: []
+    parameters:
+    - $ref: '/js/api_docs/components/parameters.yaml#/UserById'
+    tags:
+    - User
+    summary: Get information of user by Id.
+    responses:
+      '200':
+        description: Get information of user by Id success.
+      '400':
+        $ref: '/js/api_docs/components/responses.yaml#400Error'
+      '401':
+        $ref: '/js/api_docs/components/responses.yaml#/UnauthorizedError'

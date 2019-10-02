@@ -67,4 +67,11 @@ class UserController extends Controller
             return $this->responseError(__('pay.user.error'));
         }
     }
+
+    public function getById($id)
+    {
+        $user = $this->userService->find($id);
+
+        return $this->responseSuccess(UserResource::make($user), 'Create information user by id');
+    }
 }

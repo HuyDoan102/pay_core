@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Swagger UI</title>
+    <title>API Payment</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/swagger-ui.css') }}" >
     <link rel="icon" type="image/png" href="{{ asset('images/favicon-32x32.png') }}" sizes="32x32" />
     <link rel="icon" type="image/png" href="{{ asset('images/favicon-16x16.png') }}" sizes="16x16" />
@@ -31,13 +31,13 @@
 <body>
 <div id="swagger-ui"></div>
 
-<script src="{{ asset('js/swagger-ui-bundle.js') }}"> </script>
-<script src="{{ asset('js/swagger-ui-standalone-preset.js') }}"> </script>
+<script src="{{ asset('js/swagger-ui/swagger-ui-bundle.js') }}"> </script>
+<script src="{{ asset('js/swagger-ui/swagger-ui-standalone-preset.js') }}"> </script>
 <script>
     window.onload = function() {
         // Begin Swagger UI call region
-        const ui = SwaggerUIBundle({
-            url: "http://paycore.local:8000/api/documents/file-json",
+        ui = SwaggerUIBundle({
+            url: "{{ route('documents.getFile') }}",
             dom_id: '#swagger-ui',
             deepLinking: true,
             presets: [

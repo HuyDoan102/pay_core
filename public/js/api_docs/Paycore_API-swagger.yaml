@@ -1,0 +1,50 @@
+openapi: 3.0.0 #version of openAPI 3.0.0
+info:
+  title: Paycore API
+  description: This is API for paycore project
+  version: 1.0.0
+
+servers:
+  - url: '{protocol}://{domain}:{port}/{basePath}'
+    description: This is url server
+    variables:
+      protocol:
+        enum:
+        - http
+        - https
+        default: http
+      port:
+        enum:
+          - 8000
+          - 80
+        default: 8000
+      basePath:
+        default: api
+      domain:
+        enum:
+          - 34.68.124.151
+          - paycore.local
+        default: paycore.local
+
+paths:
+  /login:
+    $ref: '/js/api_docs/paths/auth.yaml#/~1login'
+  /register:
+    $ref: '/js/api_docs/paths/auth.yaml#/~1register'
+  /me:
+    deprecated: true
+    $ref: '/js/api_docs/paths/auth.yaml#/~1me'
+  /auth/me:
+    $ref: '/js/api_docs/paths/auth.yaml#/~1auth~1me'
+  /users:
+    $ref: '/js/api_docs/paths/users.yaml#/~1users'
+  /users/show/{id}:
+    $ref: '/js/api_docs/paths/users.yaml#/~1users~1show~1{id}'
+
+components:
+  securitySchemes:
+    - $ref: '/js/api_docs/components/securitySchemes.yaml#/bearerAuth'
+
+  schemas:
+    User:
+      $ref: '/js/api_docs/components/schemas.yaml#/User'
