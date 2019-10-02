@@ -43,7 +43,10 @@ paths:
 
 components:
   securitySchemes:
-    - $ref: '/js/api_docs/components/securitySchemes.yaml#/bearerAuth'
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
   schemas:
     User:
