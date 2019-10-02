@@ -5,8 +5,8 @@ info:
   version: 1.0.0
 
 servers:
-  - url: '{protocol}://{domain}:{port}/{basePath}'
-    description: This is url server
+  - url: '{protocol}://{domain-local}:{port}/{basePath}'
+    description: This is local server
     variables:
       protocol:
         enum:
@@ -20,11 +20,28 @@ servers:
         default: 8000
       basePath:
         default: api
-      domain:
+      domain-local:
+        enum:
+        - paycore.local
+        default: paycore.local
+  - url: '{protocol}://{domain-develop}/{basePath}'
+    description: This is develop server
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: http
+      port:
+        enum:
+          - 80
+        default: 80
+      basePath:
+        default: api
+      domain-develop:
         enum:
           - 34.68.124.151
-          - paycore.local
-        default: paycore.local
+        default: 34.68.124.151
 
 paths:
   /login:
