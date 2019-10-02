@@ -21,6 +21,9 @@ servers:
       basePath:
         default: api
       domain:
+        enum:
+          - 34.68.124.151
+          - paycore.local
         default: paycore.local
 
 paths:
