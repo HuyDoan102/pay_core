@@ -13,22 +13,24 @@ use Illuminate\Http\Request;
 |
 */
 Route::group(['middleware' => 'api', 'namespace' => 'Api'], function() {
-    Route::post('login', 'AuthController@login')->name('login');
-    Route::post('register', 'AuthController@register')->name('register');
-    Route::group(['middleware' => 'jwt.auth'], function() {
-        Route::group(['prefix' => 'auth', 'as' => 'auth.'], function() {
-            Route::post('logout', 'AuthController@logout')->name('logout');
-            Route::post('refresh', 'AuthController@refresh')->name('refresh');
-            Route::get('me', 'AuthController@me')->name('me');
+    Route::group(['middleware' => 'cors'], function () {
+        Route::post('login', 'AuthController@login')->name('login');
+        Route::post('register', 'AuthController@register')->name('register');
+        Route::group(['middleware' => 'jwt.auth'], function() {
+            Route::group(['prefix' => 'auth', 'as' => 'auth.'], function() {
+                Route::post('logout', 'AuthController@logout')->name('logout');
+                Route::post('refresh', 'AuthController@refresh')->name('refresh');
+                Route::get('me', 'AuthController@me')->name('me');
+            });
+            Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+                Route::get('/', 'UserController@index')->name('index');
+                Route::get('/show/{id}', 'UserController@getById')->name('getById');
+                Route::post('/store', 'UserController@store')->name('store');
+            });
         });
-        Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-            Route::get('/', 'UserController@index')->name('index');
-            Route::get('/show/{id}', 'UserController@getById')->name('getById');
-            Route::post('/store', 'UserController@store')->name('store');
+        Route::group(['prefix' => 'documents', 'as' => 'documents.'], function() {
+            Route::get('/', 'DocumentController@index')->name('index');
+            Route::get('/get-file', 'DocumentController@getFile')->name('getFile');
         });
-    });
-    Route::group(['prefix' => 'documents', 'as' => 'documents.'], function() {
-        Route::get('/', 'DocumentController@index')->name('index');
-        Route::get('/get-file', 'DocumentController@getFile')->name('getFile');
     });
 });
