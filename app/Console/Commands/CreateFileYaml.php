@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Yaml\Yaml;
 
 class CreateFileYaml extends Command
 {
@@ -12,7 +13,7 @@ class CreateFileYaml extends Command
      *
      * @var string
      */
-    protected $description = 'Create a new file yaml.';
+    protected $description = 'Create a new file yaml with place save in ["empty|components|paths|schemas"].';
 
     /**
      * The name and signature of the console command.
@@ -21,7 +22,7 @@ class CreateFileYaml extends Command
      */
     protected $signature = 'file:yaml
                             {name_file : This is name of yaml file.}
-                            {--place= : This is place save of yaml file.}';
+                            {--place= : This is place save ["components|paths"] of yaml file.}';
 
     /**
      * Create a new command instance.
@@ -41,33 +42,28 @@ class CreateFileYaml extends Command
     public function handle()
     {
         $fileName = $this->argument('name_file') . '.yaml';
-        $content = config('swagger');
-//        $responses = $this->showFileYaml($content);
-        Storage::disk('file-yaml')->put($this->option('place') . '/' .$fileName, '');
-    }
+        if ($this->option('place') == 'paths') {
+            $content = config('swagger-path');
+            $this->showFileYamlWrapper($content, $fileName);
+        }
+        if ($this->option('place') == 'components') {
 
-    /*function showFileYaml($data = [])
-    {
-        $dataResult = '';
-        foreach ($data as $key => $item) {
-            if (is_array($item)) {
-                if ($key == "servers") {
-                    $dataResult = $dataResult . "  $key: $item" . "\n";
-                    foreach ($item['data'] as $key => $value) {
-                        if ($key == 'url') {
-                            $dataResult = $dataResult . "- $key: $value" . "\n";
-                        }
-                        unset($item['data'][$key]);
-                    }
-                    $dataResult = $dataResult . "  $key: " . "\n" . $this->showFileYaml($item['data']);
-                    dd($dataResult);
-                }
-                $dataResult = $dataResult . "  $key: " . "\n" . $this->showFileYaml($item);
-            } else {
-                $dataResult = $dataResult . "  $key: $item" . "\n";
-            }
+        }
+        if ($this->option('place') == 'schemas') {
+
+        }
+        if (empty($this->option('place'))) {
+            $content = config('swagger');
+            $this->showFileYamlWrapper($content, $fileName);
         }
 
-        return $dataResult;
-    }*/
+    }
+
+    function showFileYamlWrapper($data = [], $fileName)
+    {
+        $yaml = Yaml::dump($data, 6, 2);
+
+        Storage::disk('file-yaml')->put($this->option('place') . '/' .$fileName, $yaml);
+        return $yaml;
+    }
 }

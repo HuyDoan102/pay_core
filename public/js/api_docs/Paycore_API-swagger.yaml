@@ -5,7 +5,8 @@ info:
   version: 1.0.0
 
 servers:
-  - url: '{protocol}://{domain}:{port}/{basePath}'
+  '-':
+    url: '{protocol}://{domain}:{port}/{basePath}'
     description: This is url api
     variables:
       protocol:
