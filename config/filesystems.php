@@ -42,6 +42,12 @@ return [
     */
 
     'disks' => [
+        'file-yaml' => [
+            'driver' => 'local',
+            'root' => public_path('/swagger/api_docs'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
 
         'local' => [
             'driver' => 'local',
