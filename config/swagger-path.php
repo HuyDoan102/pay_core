@@ -7,7 +7,7 @@ return [
             'tags' => '',
             'summary' => '',
             'responses' => [
-                'code' => ''
+                '{code}' => ''
             ]
         ]
     ]

@@ -36,7 +36,7 @@ paths:
               $ref: '#/components/schemas/User'
       responses:
         '200':
-          description: Access user success.
+          $ref: '#/components/responses/200Success'
         '400':
           $ref: '#/components/responses/400Error'
         '401':
@@ -53,7 +53,7 @@ paths:
               $ref: '#/components/schemas/User'
       responses:
         '200':
-          description: Access user success.
+          $ref: '#/components/responses/200Success'
         '400':
           $ref: '#/components/responses/400Error'
         '401':
@@ -67,7 +67,7 @@ paths:
       summary: Get list users.
       responses:
         '200':
-          description: Get list users success.
+          $ref: '#/components/responses/200Success'
         '400':
           $ref: '#/components/responses/400Error'
         '401':
@@ -91,6 +91,22 @@ components:
         - phone_number
         - password
   responses:
+    200Success:
+      description: Requestion success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Requestion success.
+              data:
+                type: object
+                description: Data responses.
+              status:
+                type: boolean
+                description: Status code.
     400Error:
       description: Invalid request.
       content:
@@ -101,5 +117,21 @@ components:
               message:
                 type: string
                 description: Requestion not found.
+              status:
+                type: boolean
+                default: false
+                description: Status code.
     UnauthorizedError:
-      description: Access token is missing or invalid
+      description: Access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Token is not provided.
+              status:
+                type: boolean
+                default: false
+                description: Status code.

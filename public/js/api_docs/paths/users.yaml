@@ -7,7 +7,7 @@
     summary: Get list users.
     responses:
       '200':
-        description: Get list users success.
+        $ref: '/js/api_docs/components/responses.yaml#/200Success'
       '400':
         $ref: '/js/api_docs/components/responses.yaml#/400Error'
       '401':
@@ -23,7 +23,7 @@
     summary: Get information of user by Id.
     responses:
       '200':
-        description: Get information of user by Id success.
+        $ref: '/js/api_docs/components/responses.yaml#/200Success'
       '400':
         $ref: '/js/api_docs/components/responses.yaml#400Error'
       '401':

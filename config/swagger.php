@@ -8,7 +8,7 @@ return [
         'version' => ''
     ],
     'servers' => [
-        '-' => [
+        [
             'url' => '{protocol}://{domain}:{port}/{basePath}',
             'description' => '',
             'variables' => [
@@ -33,16 +33,8 @@ return [
             ]
         ],
         'schemas' => [
-            '{Input}' => [
-                'type' => 'object',
-                'properties' => [
-                    '{field}' => [
-                        'type' => '{type}'
-                    ]
-                ],
-                'required' => [
-                    '{field}'
-                ]
+            'Input' => [
+                '$ref' => '/js/api_docs/components/{name_file}.yaml#/{Input}'
             ],
         ]
     ],

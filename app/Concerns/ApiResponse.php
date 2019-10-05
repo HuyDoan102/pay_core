@@ -9,8 +9,7 @@ trait ApiResponse
         $data = [
             'message' => $message,
             'status' => true,
-            'data' => $payload,
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'data' => $payload
         ];
 
         return response()->json($data, $statusCode);
