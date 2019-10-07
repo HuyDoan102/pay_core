@@ -37,7 +37,7 @@
   get:
     deprecated: true
     security:
-    - bearerAuth: []
+    - bearerAuth: array
     tags:
     - Auth
     summary: Get information of users.
@@ -51,7 +51,7 @@
 /auth/me:
   get:
     security:
-    - bearerAuth: []
+    - bearerAuth: array
     tags:
     - Auth
     summary: Get information of users.

@@ -3,19 +3,39 @@
 return [
     'openapi' => "3.0.0",
     'info' => [
-        'title' => '',
-        'description' => '',
-        'version' => ''
+        'title' => '{Name Project}',
+        'description' => 'This is API for {Name Project} project',
+        'version' => '1.0.0'
     ],
     'servers' => [
         [
             'url' => '{protocol}://{domain}:{port}/{basePath}',
             'description' => '',
             'variables' => [
-                'protocol' => '',
-                'domain' => '',
-                'port' => '',
-                'basePath' => '',
+                'protocol' => [
+                    'enum' => [
+                        'http',
+                        'https'
+                    ],
+                    'default' => 'http'
+                ],
+                'domain' => [
+                    'enum' => [
+                        '34.68.124.151',
+                        'paycore.local'
+                    ],
+                    'default' => 'paycore.local'
+                ],
+                'port' => [
+                    'enum' => [
+                        80,
+                        8000
+                    ],
+                    'default' => 8000
+                ],
+                'basePath' => [
+                    'default' => 'api'
+                ],
             ]
         ],
     ],

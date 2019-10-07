@@ -47,10 +47,8 @@ class CreateFileYaml extends Command
             $this->showFileYamlWrapper($content, $fileName);
         }
         if ($this->option('place') == 'components') {
-
-        }
-        if ($this->option('place') == 'schemas') {
-
+            $content = config('swagger-component');
+            $this->showFileYamlWrapper($content, $fileName);
         }
         if (empty($this->option('place'))) {
             $content = config('swagger');
