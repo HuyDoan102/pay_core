@@ -13,7 +13,7 @@ class CreateFileYaml extends Command
      *
      * @var string
      */
-    protected $description = 'Create a new file yaml with place save in ["empty|components|paths|schemas"].';
+    protected $description = 'Create a new file yaml with place save in ["empty|components|paths"].';
 
     /**
      * The name and signature of the console command.
@@ -21,8 +21,8 @@ class CreateFileYaml extends Command
      * @var string
      */
     protected $signature = 'file:yaml
-                            {name_file : This is name of yaml file.}
-                            {--place= : This is place save ["components|paths"] of yaml file.}';
+                            {name_file : This is name of yaml file.}';
+//                            {--place= : This is place save ["components|paths"] of yaml file.}';
 
     /**
      * Create a new command instance.
@@ -42,26 +42,27 @@ class CreateFileYaml extends Command
     public function handle()
     {
         $fileName = $this->argument('name_file') . '.yaml';
-        if ($this->option('place') == 'paths') {
+        $location = $this->choice('Where do you want to save file?', ['', 'paths', 'components']);
+        if ($location == 'paths') {
             $content = config('swagger-path');
-            $this->showFileYamlWrapper($content, $fileName);
+            $this->showFileYamlWrapper($content, $fileName, $location);
         }
-        if ($this->option('place') == 'components') {
+        if ($location == 'components') {
             $content = config('swagger-component');
-            $this->showFileYamlWrapper($content, $fileName);
+            $this->showFileYamlWrapper($content, $fileName, $location);
         }
-        if (empty($this->option('place'))) {
+        if (empty($location)) {
             $content = config('swagger');
-            $this->showFileYamlWrapper($content, $fileName);
+            $this->showFileYamlWrapper($content, $fileName, $location);
         }
 
     }
 
-    function showFileYamlWrapper($data = [], $fileName)
+    function showFileYamlWrapper($content, $fileName, $location)
     {
-        $yaml = Yaml::dump($data, 6, 2);
+        $yaml = Yaml::dump($content, 10, 2);
+        Storage::disk('file-yaml')->put($location . '/' .$fileName, $yaml);
 
-        Storage::disk('file-yaml')->put($this->option('place') . '/' .$fileName, $yaml);
         return $yaml;
     }
 }

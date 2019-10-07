@@ -1,14 +1,23 @@
 <?php
 $responses = [
-    'description' => 'Requestion success.',
+    'description' => '{description}.',
     'content' => [
         'application/json' => [
             'schema' => [
                 'type' => 'object',
                 'properties' => [
-                    '{field}' => [
-                        'type' => '{type}',
+                    'message' => [
+                        'type' => 'string',
                         'description' => '{description}.'
+                    ],
+                    'data' => [
+                        'type' => '{type}',
+                        'description' => 'Data responses.'
+                    ],
+                    'status' => [
+                        'type' => 'boolean',
+                        'default' => '{true/false}',
+                        'description' => 'Status code.'
                     ]
                 ]
             ]
@@ -42,5 +51,5 @@ $schemas = [
 return [
     '{response_name}' => $responses,
     '{parameter_name}' => $parameters,
-    '{field_require}' => $schemas
+    '{schemas_require}' => $schemas
 ];

@@ -41,7 +41,7 @@ return [
     ],
     'paths' => [
         '/uri' => [
-            '$ref' => '/js/api_docs/paths/{name_file}.yaml#/~1{uri}'
+            '$ref' => '/swagger/api_docs/paths/{name_file}.yaml#/~1{uri}'
         ]
     ],
     'components' => [
@@ -54,7 +54,7 @@ return [
         ],
         'schemas' => [
             'Input' => [
-                '$ref' => '/js/api_docs/components/{name_file}.yaml#/{Input}'
+                '$ref' => '/swagger/api_docs/components/{name_file}.yaml#/{Input}'
             ],
         ]
     ],
