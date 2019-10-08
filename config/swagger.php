@@ -47,6 +47,7 @@ return [
     'components' => [
         'securitySchemes' => [
             'bearerAuth' => [
+                'description' => "The following syntax must be used in the 'Authorization' header : \n\n    Value: xxxxxx.yyyyyyy.zzzzzz\ntype: JWT name: Authorization in: header",
                 'type' => 'http',
                 'scheme' => 'bearer',
                 'bearerFormat'=> 'JWT'

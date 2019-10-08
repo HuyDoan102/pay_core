@@ -70,8 +70,12 @@ class UserController extends Controller
 
     public function getById($id)
     {
-        $user = $this->userService->find($id);
+        try {
+            $user = $this->userService->find($id);
 
-        return $this->responseSuccess(UserResource::make($user), 'Create information user by id');
+            return $this->responseSuccess(UserResource::make($user), 'Create information user by id');
+        } catch (\Exception $e) {
+            return $this->responseError($e->getMessage());
+        }
     }
 }
