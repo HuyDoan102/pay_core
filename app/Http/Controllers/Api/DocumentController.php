@@ -14,7 +14,13 @@ class DocumentController extends Controller
 
     public function getFile()
     {
-        $path = config('pay.path_swagger');
+        $path = config('pay.path_swagger') . '/swagger.yaml';
+
+//        $path = '/js/Paycore_API-swagger.json';
+//        $path = '/js/Paycore_API-swagger.yaml_version_2.0.yaml';
+//        $path = '/js/api_docs/paycore_api-swagger_v3.yaml';
+//        $path = '/js/api_docs/Paycore_API-swagger.yaml';
+
         $fileJson = public_path($path);
         $file = fopen($fileJson, "r");
         $fileData = fread($file,filesize($fileJson));

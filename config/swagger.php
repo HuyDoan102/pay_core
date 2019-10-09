@@ -5,7 +5,13 @@ return [
     'info' => [
         'title' => '{Name Project}',
         'description' => 'This is API for {Name Project} project',
-        'version' => '1.0.0'
+        'version' => '1.0.0',
+        'termsOfService' => 'http://34.68.124.151',
+        'contact' => [
+            'name' => 'Nguyen Hong Doan Huy',
+            'url' => 'http://34.68.124.151',
+            'email' => 'doanhuynguyenhong@gmail.com'
+        ],
     ],
     'servers' => [
         [
@@ -66,7 +72,7 @@ return [
             ]
         ],
         '/uri' => [
-            '$ref' => '/swagger/api_docs/paths/{name_file}.yaml#/~1{uri}'
+            '$ref' => config('pay.path_swagger') . '/paths/{name_file}.yaml#/~1{uri}'
         ]
     ],
     'components' => [
@@ -80,7 +86,7 @@ return [
         ],
         'schemas' => [
             'Input' => [
-                '$ref' => '/swagger/api_docs/components/{name_file}.yaml#/{Input}'
+                '$ref' => config('pay.path_swagger') . '/components/{name_file}.yaml#/{Input}'
             ],
         ]
     ],
