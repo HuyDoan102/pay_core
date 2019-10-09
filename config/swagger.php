@@ -40,6 +40,31 @@ return [
         ],
     ],
     'paths' => [
+        '/me' => [
+            'get' => [
+                'deprecated' => true,
+                'security' => [
+                    [
+                        'bearerAuth' => 'array'
+                    ]
+                ],
+                'tags' => [
+                    'tag_name'
+                ],
+                'summary' => 'Get information of users.',
+                'responses' => [
+                    '200' => [
+                        'description' => 'status 200.'
+                    ],
+                    '400' => [
+                        'description' => 'status 400.'
+                    ],
+                    '401' => [
+                        'description' => 'status 401.'
+                    ]
+                ]
+            ]
+        ],
         '/uri' => [
             '$ref' => '/swagger/api_docs/paths/{name_file}.yaml#/~1{uri}'
         ]
