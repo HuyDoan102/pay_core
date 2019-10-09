@@ -14,7 +14,8 @@ class DocumentController extends Controller
 
     public function getFile()
     {
-        $fileJson = public_path('/swagger/api_docs/swagger.yaml');
+        $path = config('pay.path_swagger');
+        $fileJson = public_path($path);
         $file = fopen($fileJson, "r");
         $fileData = fread($file,filesize($fileJson));
         fclose($file);

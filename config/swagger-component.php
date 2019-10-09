@@ -30,8 +30,8 @@ $parameters = [
     'name' => '{name}',
     'schema' => [
         'type' => '{type}',
-        'required' => '{true/false}'
     ],
+    'required' => '{true/false}',
     'description' => '{description}'
 
 ];
